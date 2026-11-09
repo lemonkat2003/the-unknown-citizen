@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b1119">
   <meta name="description" content="A point-and-click investigation of Martin Vale inspired by The Unknown Citizen.">
   <title>THE UNKNOWN CITIZEN — Civic Investigations v31</title>
@@ -383,6 +383,98 @@ body{background:
 .refinedEvidence .artifactFloat{animation:artifactFloat 6s ease-in-out infinite}
 .portraitArt{filter:drop-shadow(0 12px 24px rgba(0,0,0,.22))}
 @media (prefers-reduced-motion:reduce){.refinedEvidence .artifactFloat,.portraitArt{animation:none!important}}
+
+/* V35: phone-first layout. Visual theme and game rules remain from v33. */
+html{scroll-padding-top:88px;-webkit-text-size-adjust:100%;}
+body{min-width:0;overflow-x:hidden;min-height:100dvh;}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+:focus-visible{outline-offset:3px}
+.mobileSceneActions{display:none}
+.mobileMatchHint{display:none}
+@media (pointer:coarse){
+  button,.btn,.control,.navitem,.topic,.mapmini,.districtTile,.reportAnswerBox,.selectableFact{min-height:44px}
+  button:active:not(:disabled){filter:brightness(1.16)}
+  .selectableFact{touch-action:manipulation}
+}
+@media(max-width:760px){
+  body{background-attachment:scroll!important;background-color:#0b1119!important}
+  .masthead{height:auto;min-height:56px;padding:8px 12px;gap:7px;display:grid;grid-template-columns:minmax(0,1fr) auto;position:sticky;top:0}
+  .logo{padding:0;min-width:0}.logo .seal{width:30px;height:30px;font-size:18px}.logo strong{font-size:10px;letter-spacing:.02em}.logo small{display:none}
+  .mast-actions{min-width:0;width:auto;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}
+  .mast-actions .case-id,.mast-actions .cashBalance{display:none}
+  .mast-actions .time{font-size:14px;white-space:nowrap;padding:3px 5px}
+  #musicToggle{padding:7px 8px;min-width:auto;font-size:10px}
+  #journalNav{padding:7px 8px;font-size:10px}#restartNav{display:none}
+  .layout{display:block;min-height:calc(100dvh - 108px);max-width:none}
+  .rail{display:flex;gap:4px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;white-space:nowrap;padding:5px 8px;border-bottom:1px solid var(--edge);background:#101b25;position:sticky;top:56px;z-index:11;scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}.railHead,.rail .rule,.railCase{display:none}
+  .rail .navitem{flex:0 0 auto;margin:0;min-width:max-content;padding:10px 12px;min-height:44px;font-size:11px;scroll-snap-align:start}
+  .rail .navitem[data-action="case-desk"]{display:none}
+  .app{width:100%;padding:18px 13px 40px;min-width:0}
+  .app section{min-width:0}.placeTop{gap:9px;align-items:flex-start;flex-wrap:wrap}.placeTop .btn{min-height:44px}
+  h1{font-size:clamp(30px,8vw,44px)}h2{font-size:clamp(25px,6.5vw,32px)}
+  .tilegrid,.districtGrid,.citylist{grid-template-columns:1fr!important;gap:10px}
+  .tile svg{height:120px}.mapmini,.districtTile{min-height:64px}
+  .speaker{grid-template-columns:1fr!important;gap:12px;margin:14px 0}
+  .portrait{min-height:0!important;height:210px!important;max-height:210px!important;width:100%;max-width:none;display:flex;justify-content:center}
+  .portrait svg{height:210px!important;min-height:0!important;max-width:240px!important;width:100%!important}
+  .dialogue{padding:16px 13px;gap:12px}.quote{font-size:17px;padding:10px 0}
+  .topic{font-size:14px;min-height:48px}.topic small{font-size:11px}
+  .scene{aspect-ratio:16/9;min-height:180px;overflow:hidden}
+  .scene .hotspot{display:none}
+  .mobileSceneActions{display:block;margin:12px 0 18px;padding:13px;border:1px solid var(--edge);border-radius:8px;background:#192935}
+  .mobileSceneActions .eyebrow{font-size:10px;margin-bottom:9px}
+  .mobileObjectGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .mobileObjectGrid button{min-width:0;min-height:52px;line-height:1.35;padding:9px;border-radius:6px;text-align:left;white-space:normal;font-size:12px}
+  .mobileObjectGrid .seen{opacity:.65}
+  .mobileWitnesses{display:grid;grid-template-columns:1fr;gap:9px;margin-top:12px}
+  .mobileWitnesses button{width:100%;min-height:46px;text-align:left}
+  .sceneFoot{font-size:10px;gap:5px;margin:8px 0 10px}
+  .app .storycard{display:none}
+  .reportCard,.reportWide{max-width:100%;width:100%;min-width:0}
+  .reportSplit{display:flex!important;flex-direction:column;gap:14px}
+  .reportForm{width:100%;padding:16px 13px!important}
+  .reportJournal{position:static!important;overflow:visible!important;max-height:none!important;height:auto!important;width:100%;padding-right:0!important}
+  .reportJournal .journalSheet{padding:16px 12px!important}
+  .shortQuestion{gap:8px}.questionContents{min-width:0;flex:1}
+  .reportAnswerBox{min-height:52px!important;word-break:break-word}
+  .mobileMatchHint{display:block;position:sticky;top:100px;z-index:5;background:#2b404c;border:1px solid #ad946b;border-radius:7px;padding:10px 13px;font:12px/1.45 'IBM Plex Mono',monospace;color:#ffe4b6;box-shadow:0 8px 18px #0007}
+  .mobileMatchHint span{color:#d8e2e7}
+  .reportJournal .selectableFact{min-height:56px;padding:13px 9px;text-align:left}
+  .journalAuto .factMain{display:block}
+  .journalAuto .factMain strong{display:block;font-size:10px;min-width:0}
+  .journalAuto .factMain span{font-size:18px;line-height:1.4;overflow-wrap:anywhere}
+  .journalAuto .factRow small{margin-left:0;font-size:11px}
+  .selectableFact .useFactHint{margin-left:0;margin-top:8px;font-size:11px}
+  .journalStandalone,.journalGrid{grid-template-columns:1fr;display:block}
+  .paper,.journalSheet{padding:17px 14px}
+  .reportSubmit{width:100%;font-size:12px}
+  .evidenceOverlay{inset:0;padding:8px!important;align-items:center!important;justify-content:center!important;z-index:85}
+  .evidenceModal{max-height:calc(100dvh - 20px)!important;height:auto!important;overflow-y:auto!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:13px!important;border-radius:11px!important;width:min(100%,540px)!important}
+  .evidencePicture{height:auto!important;max-height:32dvh!important;min-height:110px;display:block;width:100%}
+  .evidenceModal h2{font-size:24px!important;margin:6px 0 8px}.evidenceDescription{font-size:14px!important;line-height:1.5}
+  .modalHead{align-items:center;gap:8px}.modalHead .eyebrow{font-size:9px}.modalHead button{flex-shrink:0}
+  .modalFoot{display:block}.modalFoot .options{display:grid;grid-template-columns:1fr!important;gap:8px;width:100%}
+  .modalFoot .btn{width:100%;min-height:46px!important}
+  .secretRevealOverlay{padding:8px;align-items:center;z-index:90}
+  .secretRevealModal{width:100%;max-height:calc(100dvh - 16px);overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 14px}
+  .secretRevealRows{grid-template-columns:1fr}.secretRevealRow{padding:13px}
+  .footer{padding:12px 10px;font-size:9px}
+  .options button{min-height:44px}
+}
+@media(max-width:390px){
+  .masthead{padding:7px 8px}.logo strong{font-size:9px}.mast-actions{gap:3px}
+  #musicToggle,#journalNav{font-size:9px;padding:6px}
+  .app{padding:14px 10px 40px}.dialogue{padding:12px 11px}
+  .mobileObjectGrid button{font-size:11px;padding:7px}
+}
+@media(orientation:landscape) and (max-height:460px){
+  .masthead{position:relative}.rail{position:relative;top:0}
+  .portrait{height:150px!important;max-height:150px!important}.portrait svg{height:150px!important}
+  .evidenceModal{max-height:calc(100dvh - 8px)!important}.evidencePicture{max-height:24dvh!important}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scene .walkerLoop,.scene .walkerLoop2,.scene .carDrive,.scene .driftCloud{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -937,7 +1029,7 @@ function roomView(){
   G.screen='map';G.district=null;G.finding={kind:'error',title:'Location locked',body:'This location is not available yet. Ask witnesses about where Martin went next.'};save();render();return '';
  }
  const places=visibleEvidenceForPlace(p.id),objects=objectSet(p.id),npcs=Object.values(G.case.people).filter(x=>x.place===p.id);
- return `<section><div class="eyebrow">FIELD INVESTIGATION / ${escapeHTML(p.district)}</div><div class="placeTop"><div><h2 style="margin:8px 0">${escapeHTML(p.name)}</h2><p class="muted">Click objects to examine them. File only the clues you want to keep in the Field Journal.</p></div><button class="btn subtle" data-action="back-district">← ${escapeHTML(p.district)}</button></div><div class="scene">${sceneArt(p.kind)}${objects.map((name,i)=>{let e=places[i],done=G.inspected.includes(p.id+':'+i)||!!e&&has(e.id);return `<button class="hotspot ${done?'seen':''}" style="left:${POS[i][0]}%;top:${POS[i][1]}%" data-object="${i}" title="Inspect ${escapeHTML(name)}">${escapeHTML(name)}${done?' ✓':''}</button>`}).join('')}${npcs.map((person,i)=>`<button class="hotspot" style="left:${68+i*15}%;top:${19+i*12}%" data-npc="${person.role}" aria-label="Interview ${escapeHTML(person.name)}">◉ ${escapeHTML(person.name.split(' ')[0])}</button>`).join('')}</div><div class="sceneFoot"><span class="mono muted">${places.filter(e=>has(e.id)).length}/${places.length} CASE RECORDS RECOVERED HERE</span><span class="mono muted">${npcs.length} WITNESS${npcs.length===1?'':'ES'} ON SITE</span></div>${findingView()}<div class="storycard"><div class="eyebrow">VISIBLE DETAILS</div><p class="muted" style="margin:8px 0 12px">Click an object to inspect its contents. You choose whether each clue is filed.</p>${npcs.length?`<div class="divider"></div><div class="eyebrow">RESIDENTS PRESENT</div><div class="options">${npcs.map(x=>`<button class="btn" data-npc="${x.role}">INTERVIEW ${escapeHTML(x.name)} ↗</button>`).join('')}</div>`:''}</div></section>`}
+ return `<section><div class="eyebrow">FIELD INVESTIGATION / ${escapeHTML(p.district)}</div><div class="placeTop"><div><h2 style="margin:8px 0">${escapeHTML(p.name)}</h2><p class="muted">Click objects to examine them. File only the clues you want to keep in the Field Journal.</p></div><button class="btn subtle" data-action="back-district">← ${escapeHTML(p.district)}</button></div><div class="scene">${sceneArt(p.kind)}${objects.map((name,i)=>{let e=places[i],done=G.inspected.includes(p.id+':'+i)||!!e&&has(e.id);return `<button class="hotspot ${done?'seen':''}" style="left:${POS[i][0]}%;top:${POS[i][1]}%" data-object="${i}" title="Inspect ${escapeHTML(name)}">${escapeHTML(name)}${done?' ✓':''}</button>`}).join('')}${npcs.map((person,i)=>`<button class="hotspot" style="left:${68+i*15}%;top:${19+i*12}%" data-npc="${person.role}" aria-label="Interview ${escapeHTML(person.name)}">◉ ${escapeHTML(person.name.split(' ')[0])}</button>`).join('')}</div><div class="mobileSceneActions" aria-label="Touch-friendly investigation controls"><div class="eyebrow">TAP AN OBJECT TO EXAMINE</div><div class="mobileObjectGrid">${objects.map((name,i)=>{const e=places[i],done=G.inspected.includes(p.id+':'+i)||!!e&&has(e.id);return `<button type="button" class="btn ${done?'seen':''}" data-object="${i}">${escapeHTML(name)}${done?' ✓':''}</button>`}).join('')}</div>${npcs.length?`<div class="mobileWitnesses"><div class="eyebrow">PEOPLE HERE</div>${npcs.map(x=>`<button class="btn" data-npc="${x.role}">INTERVIEW ${escapeHTML(x.name)} ↗</button>`).join('')}</div>`:''}</div><div class="sceneFoot"><span class="mono muted">${places.filter(e=>has(e.id)).length}/${places.length} CASE RECORDS RECOVERED HERE</span><span class="mono muted">${npcs.length} WITNESS${npcs.length===1?'':'ES'} ON SITE</span></div>${findingView()}<div class="storycard"><div class="eyebrow">VISIBLE DETAILS</div><p class="muted" style="margin:8px 0 12px">Click an object to inspect its contents. You choose whether each clue is filed.</p>${npcs.length?`<div class="divider"></div><div class="eyebrow">RESIDENTS PRESENT</div><div class="options">${npcs.map(x=>`<button class="btn" data-npc="${x.role}">INTERVIEW ${escapeHTML(x.name)} ↗</button>`).join('')}</div>`:''}</div></section>`}
 function inspect(i){
  const p=VP[G.location],k=`${p.id}:${i}`,item=objectSet(p.id)[i];
  let e=objectForEvidence(p.id,i);
@@ -1390,7 +1482,7 @@ function answerMatches(q,input){
  if(q.id==='job')return /clerk|municipal/.test(x);
  return false;
 }
-function reportView(){const questions=questionSet();return `<section class="reportCard reportWide"><div class="eyebrow">FINAL FILE / ${escapeHTML(G.case.id)}</div><h2 style="margin:10px 0">Citizen Report — Martin Vale</h2><p class="muted">Select an answer box on the left, then click matching evidence from the Field Journal on the right. Five of six correct findings are required.</p><div class="options" style="margin-bottom:14px"><button class="btn subtle" data-view="map">← CONTINUE INVESTIGATION</button></div><div class="reportSplit"><div class="reportForm"><div class="eyebrow">FORM C/06 · MATCH THE EVIDENCE</div>${questions.map((q,i)=>`<div class="shortQuestion"><span class="questionNum">${String(i+1).padStart(2,'0')}</span><div class="questionContents"><strong>${escapeHTML(q.label)}</strong><button type="button" class="reportSelection reportAnswerBox ${G.answers[q.id]?'filled':''} ${G.activeReportField===q.id?'reportTargetSelected':''}" data-report-slot="${q.id}" aria-pressed="${G.activeReportField===q.id?'true':'false'}">${G.answers[q.id]?escapeHTML(G.answers[q.id]):G.activeReportField===q.id?'Now choose a matching journal fact →':'Click here to select this answer box'}</button>${G.answers[q.id]?`<button type="button" class="clearReportSelection" data-clear-report="${q.id}">Clear selection</button>`:''}</div></div>`).join('')}<button class="btn primary big reportSubmit" data-action="submit">SUBMIT REPORT & RECEIVE SCORE →</button></div><aside class="reportJournal" aria-label="Field journal alongside final report">${journalPanel(true)}</aside></div></section>`}
+function reportView(){const questions=questionSet();return `<section class="reportCard reportWide"><div class="eyebrow">FINAL FILE / ${escapeHTML(G.case.id)}</div><h2 style="margin:10px 0">Citizen Report — Martin Vale</h2><p class="muted">Select an answer box on the left, then click matching evidence from the Field Journal on the right. Five of six correct findings are required.</p><div class="options" style="margin-bottom:14px"><button class="btn subtle" data-view="map">← CONTINUE INVESTIGATION</button></div><div class="mobileMatchHint" role="status">${G.activeReportField?`Matching: <strong>${escapeHTML(questions.find(q=>q.id===G.activeReportField)?.label||'Report field')}</strong> <span>— tap a journal fact below.</span>`:'Tap an answer box, then select a fact from the journal below.'}</div><div class="reportSplit"><div class="reportForm"><div class="eyebrow">FORM C/06 · MATCH THE EVIDENCE</div>${questions.map((q,i)=>`<div class="shortQuestion"><span class="questionNum">${String(i+1).padStart(2,'0')}</span><div class="questionContents"><strong>${escapeHTML(q.label)}</strong><button type="button" class="reportSelection reportAnswerBox ${G.answers[q.id]?'filled':''} ${G.activeReportField===q.id?'reportTargetSelected':''}" data-report-slot="${q.id}" aria-pressed="${G.activeReportField===q.id?'true':'false'}">${G.answers[q.id]?escapeHTML(G.answers[q.id]):G.activeReportField===q.id?'Now choose a matching journal fact →':'Click here to select this answer box'}</button>${G.answers[q.id]?`<button type="button" class="clearReportSelection" data-clear-report="${q.id}">Clear selection</button>`:''}</div></div>`).join('')}<button class="btn primary big reportSubmit" data-action="submit">SUBMIT REPORT & RECEIVE SCORE →</button></div><aside class="reportJournal" aria-label="Field journal alongside final report">${journalPanel(true)}</aside></div></section>`}
 function resultView(){let qs=questionSet(),score=G.score,passed=score>=5;return `<section class="reportCard"><div class="eyebrow">OFFICIAL GOVERNMENT REVIEW / ${escapeHTML(G.case.id)}</div><h1 style="margin:13px 0">${passed?'FILE ACCEPTED':'FILE INCOMPLETE'}</h1><div class="casebrief"><div class="eyebrow">ACCURACY RATING</div><div class="metric" style="font-size:70px">${score}<span class="muted" style="font-size:26px">/${qs.length}</span></div><div class="progress"><span style="width:${score/qs.length*100}%"></span></div><p style="margin-top:13px">${passed?'The Bureau has accepted the citizen report.':'At least five of six correct answers are required.'}</p></div><h2 style="margin:24px 0 15px">Report review</h2>${qs.map((q,i)=>{let x=G.answers[q.id]||'',ok=answerMatches(q,x);return `<div class="review ${ok?'ok':'no'}"><strong>${ok?'✓':'✕'} ${escapeHTML(q.label)}</strong><p class="muted">Correct: ${escapeHTML(q.answer)}</p><p class="muted">Filed: ${escapeHTML(x||'No answer')}</p></div>`}).join('')}<div class="options"><button class="btn" data-action="show-secrets">DID YOU NOTICE? · OTHER SECRETS</button><button class="btn primary big" data-action="new-dossier">RESTART MARTIN’S CASE ↗</button><button class="btn" data-view="journal">REVIEW FIELD JOURNAL</button></div></section>`}
 
 
@@ -1409,7 +1501,8 @@ function afterReportSecrets(){
 function render(){header();$('#rail').innerHTML=rail();$('#activity').innerHTML=activity();if(!G.started){$('#app').innerHTML=dispatch();return}$('#app').innerHTML=G.done?resultView():G.screen==='map'?mapView(G.district||null):G.screen==='room'?roomView():G.screen==='talk'?talkView():G.screen==='journal'?journalView():G.screen==='report'?reportView():mapView();if(G.pending){$('#app').insertAdjacentHTML('beforeend',evidenceModal())}if(G.done&&G.showSecretsReveal){$('#app').insertAdjacentHTML('beforeend',afterReportSecrets())}if(G.confirmReset){$('#app').insertAdjacentHTML('afterbegin',`<div class="finding negative" style="margin-bottom:17px"><div class="eyebrow">CONFIRM NEW ASSIGNMENT</div><h3 style="margin:7px 0">Restart the Martin Vale investigation?</h3><p>Current unsaved progress will be cleared. Your current case file will remain as a historical identifier only.</p><div class="options"><button class="btn" data-action="cancel-reset">KEEP PLAYING</button><button class="btn primary" data-action="confirm-reset">RESTART CASE</button></div></div>`)}}
 function startCase(i){G=newState(choices[i]);G.started=true;choices=[];G.finding={kind:'observation',title:'Case assigned',body:`Assigned to review ${G.case.citizen}, ${G.case.job}. West Ward and Civic Center are open; other sites will unlock only when witnesses mention them.`};pushLog('NEW ASSIGNMENT',G.case.citizen);save();render()}
 function tick(){if(!G||!G.started||G.done||G.rolling||!!G.pending||!G.timing||G.paused||G.screen==='report'||G.screen==='journal')return;G.seconds=Math.max(0,G.seconds-1);const display=$('#timeText');if(display)display.textContent=formatTime(G.seconds);if(G.seconds===0){G.timing=false;G.finding={kind:'observation',title:'Shift elapsed',body:'Your fifteen-minute shift is over. You may continue investigating without a deadline, or file the report now.'};pushLog('SHIFT ELAPSED','Investigation may continue in open-shift mode.');save();render()}else if(G.seconds%15===0)save()}
-function goto(view){if(view==='dispatch'&&!G.started){render();return}if(!G.started)return;G.screen=view;G.district=null;G.finding=null;G.pending=null;G.confirmReset=false;save();render()}
+function mobileScrollTop(){if(window.matchMedia('(max-width:760px)').matches)window.scrollTo({top:0,behavior:'instant'});}
+function goto(view){if(view==='dispatch'&&!G.started){render();return}if(!G.started)return;G.screen=view;G.district=null;G.finding=null;G.pending=null;G.confirmReset=false;save();render();mobileScrollTop()}
 function newAssignment(){
  G=newState({seed:0,id:'',citizen:'',evidence:[],people:{},secrets:{},facts:{}});
  G.started=false;choices=[candidate(378,true)];save();render();
@@ -1417,7 +1510,7 @@ function newAssignment(){
 function submit(){playUISound('submit');let qs=questionSet();G.score=qs.reduce((count,q)=>count+(answerMatches(q,G.answers[q.id])?1:0),0);G.done=true;G.screen='result';G.activeReportField=null;G.showSecretsReveal=true;pushLog('REPORT SUBMITTED',`${G.score}/${qs.length} correct.`);save();render()}
 function onClick(event){let b=event.target.closest('button');if(!b)return;if(G.rolling)return;if(G.pending&&!['collect-pending','discard-pending'].includes(b.dataset.action)){G.pending=null;}
 if(b.id==='musicToggle'){setMusicEnabled(!AUDIO.enabled);return}
-if(b.dataset.reportSlot){const currentScroll=document.querySelector('.reportJournal')?.scrollTop||0;G.activeReportField=b.dataset.reportSlot;G.screen='report';save();render();const journal=document.querySelector('.reportJournal');if(journal)journal.scrollTop=currentScroll;return}
+if(b.dataset.reportSlot){const currentScroll=document.querySelector('.reportJournal')?.scrollTop||0;G.activeReportField=b.dataset.reportSlot;G.screen='report';save();render();const journal=document.querySelector('.reportJournal');if(journal){journal.scrollTop=currentScroll;if(window.matchMedia('(max-width:760px)').matches){journal.scrollIntoView({block:'start',behavior:'instant'});}}return}
 if(b.dataset.evidenceValue!==undefined){
  if(!G.activeReportField||G.screen!=='report')return;
  const journalScroll=document.querySelector('.reportJournal')?.scrollTop||0;
@@ -1426,21 +1519,22 @@ if(b.dataset.evidenceValue!==undefined){
  G.activeReportField=null;
  save();render();
  const journal=document.querySelector('.reportJournal');if(journal)journal.scrollTop=journalScroll;
+ if(window.matchMedia('(max-width:760px)').matches){const target=document.querySelector('[data-report-slot="'+field+'"]');if(target)target.scrollIntoView({block:'center',behavior:'instant'});}
  return;
 }
 if(b.dataset.clearReport){delete G.answers[b.dataset.clearReport];G.activeReportField=b.dataset.clearReport;save();render();return}
 if(b.dataset.choice!==undefined){startCase(Number(b.dataset.choice));return}
 if(b.dataset.object!==undefined){inspect(Number(b.dataset.object));return}
-if(b.dataset.npc){G.bribePending=null;G.npc=b.dataset.npc;G.screen='talk';G.dialogue=null;G.dialogueRoll=null;G.originalRoll=null;G.bonusRoll=null;G.selectedTopic=null;G.finding=null;G.conversationProgress=G.conversationProgress||{};G.conversationTranscript=G.conversationTranscript||{};save();render();return}
+if(b.dataset.npc){G.bribePending=null;G.npc=b.dataset.npc;G.screen='talk';G.dialogue=null;G.dialogueRoll=null;G.originalRoll=null;G.bonusRoll=null;G.selectedTopic=null;G.finding=null;G.conversationProgress=G.conversationProgress||{};G.conversationTranscript=G.conversationTranscript||{};save();render();mobileScrollTop();return}
 if(b.dataset.topic){ask(b.dataset.topic);return}
 if(b.dataset.deduce){let [actor,i]=b.dataset.deduce.split(':');chooseDeduction(actor,Number(i));return}
-if(b.dataset.place){if(!isPlaceUnlocked(b.dataset.place)){G.finding={kind:'error',title:'Location locked',body:'That location has not been revealed yet. Ask a witness where Martin went next.'};G.screen='map';save();render();return}G.location=b.dataset.place;G.screen='room';G.finding=null;save();render();return}
-if(b.dataset.district){if(!unlockedDistricts().includes(b.dataset.district))return;G.district=b.dataset.district;G.screen='map';render();return}
+if(b.dataset.place){if(!isPlaceUnlocked(b.dataset.place)){G.finding={kind:'error',title:'Location locked',body:'That location has not been revealed yet. Ask a witness where Martin went next.'};G.screen='map';save();render();return}G.location=b.dataset.place;G.screen='room';G.finding=null;save();render();mobileScrollTop();return}
+if(b.dataset.district){if(!unlockedDistricts().includes(b.dataset.district))return;G.district=b.dataset.district;G.screen='map';render();mobileScrollTop();return}
 if(b.dataset.view){goto(b.dataset.view);return}
 const a=b.dataset.action;
 if(a==='dismiss-secrets'){G.showSecretsReveal=false;save();render();return}
 if(a==='show-secrets'){G.showSecretsReveal=true;save();render();return}
-if(a==='back-district'){G.district=VP[G.location].district;G.screen='map';G.finding=null;G.pending=null;save();render();return}
+if(a==='back-district'){G.district=VP[G.location].district;G.screen='map';G.finding=null;G.pending=null;save();render();mobileScrollTop();return}
 if(a==='record-testimony'){recordTestimony();return}
 if(a==='advance-conversation'){advanceConversation();return}
 if(a==='throw-die'){throwDie();return}
